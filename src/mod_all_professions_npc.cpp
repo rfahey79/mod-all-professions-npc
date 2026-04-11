@@ -81,7 +81,7 @@ namespace {
         }
     }
 
-    bool PlayerAlreadyKnowsProfession(Player* player, unit32 skillLine) {
+    bool PlayerAlreadyKnowsProfession(Player* player, uint32 skillLine) {
         return player->HasSkill(skillLine);
     }
 
