@@ -8,7 +8,7 @@
 namespace {
     enum GossipSender {
         SENDER_MAIN = 1
-    }
+    };
 
     enum GossipAction {
         ACTION_ALCHEMY              = 100,
@@ -25,7 +25,7 @@ namespace {
         ACTION_COOKING              = 111,
         ACTION_FIRST_AID            = 112,
         ACTION_FISHING              = 113,
-    }
+    };
 
     // WotLK base profession/secondary learning spells.
     // These are the usual 3.3.5a apprentice spells
@@ -44,7 +44,7 @@ namespace {
         SPELL_COOKING               = 2550,
         SPELL_FIRST_AID             = 3273,
         SPELL_FISHING               = 7620,
-    }
+    };
 
     // SkillLine IDs
     enum SkillLines {
@@ -62,7 +62,7 @@ namespace {
         SKILL_SKINNING              = 393,
         SKILL_JEWELCRAFTING         = 755,
         SKILL_INSCRIPTION           = 773,
-    }
+    };
 
     bool IsPrimaryProfession(uint32 skillLine)  {
         switch(skillLine) {
