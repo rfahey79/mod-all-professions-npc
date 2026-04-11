@@ -214,8 +214,8 @@ namespace {
 
                 return true;
             }
-    }
-};
+    };
+}
 
 void Addmod_all_professoins_npcScripts() {
     new npc_all_professions_trainer();
