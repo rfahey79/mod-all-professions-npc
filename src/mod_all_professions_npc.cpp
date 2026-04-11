@@ -123,7 +123,7 @@ namespace {
         player->learnSpell(spellId, false);
 
         if(!player->HasSkill(skillLine)) {
-            ChatHandler(player.GetSession()).PSendSysMessage("Tried to teach %s, but the skill line was not added. Verify the spell ID for your core/database", professionName);
+            ChatHandler(player->GetSession()).PSendSysMessage("Tried to teach %s, but the skill line was not added. Verify the spell ID for your core/database", professionName);
         }
         else {
             ChatHandler(player->GetSession()).PSendSysMessage("You have learned %s.", professionName);
