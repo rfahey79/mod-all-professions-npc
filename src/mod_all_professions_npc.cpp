@@ -120,7 +120,7 @@ namespace {
             ChatHandler(player->GetSession()).SendSysMessage("You already know %s primary professions.", sConfigMgr->GetOption<uint32>("MaxPrimaryTradeSkill", 2)); // find the max primary profession count
         }
 
-        player->LearnSpell(spellId, false);
+        player->learnSpell(spellId, false);
 
         if(!player->HasSkill(skillLine)) {
             ChatHandler(player.GetSession()).PSendSysMessage("Tried to teach %s, but the skill line was not added. Verify the spell ID for your core/database", professionName);
