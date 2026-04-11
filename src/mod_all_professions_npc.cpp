@@ -217,6 +217,6 @@ namespace {
     };
 }
 
-void Addmod_all_professoins_npcScripts() {
+void Addmod_all_professions_npcScripts() {
     new npc_all_professions_trainer();
 }
