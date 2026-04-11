@@ -136,7 +136,7 @@ namespace {
         public:
             npc_all_professions_trainer(): CreatureScript("npc_all_professions_trainer") {}
 
-            bool OnGossipHellow(Player* player, Creature* creature) override {
+            bool OnGossipHello(Player* player, Creature* creature) override {
                 ClearGossipMenuForPlayer(player);
 
                 AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Learn Alchemy", SENDER_MAIN, ACTION_ALCHEMY);
