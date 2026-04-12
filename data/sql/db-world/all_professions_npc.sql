@@ -96,3 +96,7 @@ VALUES
     1,
     0
 );
+
+UPDATE creature_template_model
+SET DisplayScale = 0.75
+WHERE CreatureID = @ENTRY
