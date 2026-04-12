@@ -99,4 +99,4 @@ VALUES
 
 UPDATE creature_template_model
 SET DisplayScale = 0.75
-WHERE CreatureID = @ENTRY
+WHERE CreatureID = @ENTRY;
