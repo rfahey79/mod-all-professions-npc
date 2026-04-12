@@ -89,11 +89,27 @@ namespace {
         // Azeroth/WotLK standard: max 2 primary professions
         // Count currently known primary professions.
         // worldserver.conf allows you to override this max count.
+        // uint32 count = 0;
+        // uint32 maxProfessions = sConfigMgr->GetOption<uint32>("MaxPrimaryTradeSkill", 2);
+
+        // if(player->HasSkill(SKILL_ALCHEMY)) ++count;
+        // if(player->HasSkill(SKILL_BLACSMITHING)) ++count;
+        // if(player->HasSkill(SKILL_ENCHANTING)) ++count;
+        // if(player->HasSkill(SKILL_ENGINEERING)) ++count;
+        // if(player->HasSkill(SKILL_HERBALISM)) ++count;
+        // if(player->HasSkill(SKILL_INSCRIPTION)) ++count;
+        // if(player->HasSkill(SKILL_JEWELCRAFTING)) ++count;
+        // if(player->HasSkill(SKILL_LEATHERWORKING)) ++count;
+        // if(player->HasSkill(SKILL_MINING)) ++count;
+        // if(player->HasSkill(SKILL_SKINNING)) ++count;
+        // if(player->HasSkill(SKILL_TAILORING)) ++count;
+
+        // return count < maxProfessions; /// We need to learn how to pull this number from config and default to 2 if we don't have it.
 
         return player->GetFreePrimaryProfessionPoints() > 0;
     }
 
-    void TeachProfession(Player* player, GameObject* creature, uint32 skillLine, uint32 spellId, char const* professionName) {
+    void TeachProfession(Player* player, Creature* creature, uint32 skillLine, uint32 spellId, char const* professionName) {
         if(PlayerAlreadyKnowsProfession(player, skillLine)) {
             ChatHandler(player->GetSession()).SendSysMessage("You already know " + std::string(professionName) + ".");
             CloseGossipMenuFor(player);
@@ -116,11 +132,11 @@ namespace {
         CloseGossipMenuFor(player);
     }
 
-    class go_all_professions_trainer: public GameObjectScript {
+    class npc_all_professions_trainer: public CreatureScript {
         public:
-            go_all_professions_trainer(): GameObjectScript("go_all_professions_trainer") {}
+            npc_all_professions_trainer(): CreatureScript("npc_all_professions_trainer") {}
 
-            bool OnGossipHello(Player* player, GameObject* creature) override {
+            bool OnGossipHello(Player* player, Creature* creature) override {
                 ClearGossipMenuFor(player);
 
                 AddGossipItemFor(player, GOSSIP_ICON_TRAINER, "Learn Alchemy", SENDER_MAIN, ACTION_ALCHEMY);
@@ -142,7 +158,7 @@ namespace {
                 return true;
             }
 
-            bool OnGossipSelect(Player* player, GameObject* creature, uint32 sender, uint32 action) override {
+            bool OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action) override {
                 ClearGossipMenuFor(player);
 
                 if(sender != SENDER_MAIN)
@@ -202,5 +218,5 @@ namespace {
 }
 
 void Addmod_all_professions_npcScripts() {
-    new go_all_professions_trainer();
+    new npc_all_professions_trainer();
 }
