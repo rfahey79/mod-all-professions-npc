@@ -1,11 +1,10 @@
 SET @ENTRY := 190011;
 SET @NAME := 'Profession Master';
-SET @DISPLAYID := 11686; -- placeholder example, replace with the box model you want
 
-DELETE FROM `creature_template` WHERE `entry` = @ENTRY;
 DELETE FROM `creature_template_model` WHERE `CreatureID` = @ENTRY;
+DELETE FROM `creature_template` WHERE `entry` = @ENTRY;
 
-INSERT INTO `creature_template` 
+INSERT INTO `creature_template`
 (
     `entry`,
     `name`,
@@ -37,9 +36,39 @@ INSERT INTO `creature_template`
     `CreatureImmunitiesId`,
     `flags_extra`,
     `ScriptName`
-) VALUES
+)
+VALUES
 (
-    @ENTRY, @NAME, 'Learn any profession', NULL, 0, 80, 80, 2, 35, 1, 0, 0, 2000, 0, 1, 0, 7, 138936390, 0, 0, 0, '', 0, 1, 0, 0, 1, 0, 0, 'npc_all_professions_trainer'
+    @ENTRY,
+    @NAME,
+    'Learn any profession',
+    'Speak',
+    0,
+    80,
+    80,
+    2,
+    35,
+    1,
+    0,
+    0,
+    2000,
+    2000,
+    1,
+    0,
+    7,
+    0,
+    0,
+    0,
+    0,
+    '',
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    'npc_all_professions_trainer'
 );
 
 INSERT INTO `creature_template_model`
@@ -55,7 +84,7 @@ VALUES
 (
     @ENTRY,
     0,
-    @DISPLAYID,
+    19723,
     1,
     1,
     0
