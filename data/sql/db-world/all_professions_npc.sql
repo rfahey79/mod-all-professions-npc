@@ -1,6 +1,13 @@
 SET @ENTRY := 190011;
 SET @NAME := 'Profession Master';
+SET @DISPLAYID := 23405;
 
+-- clean up any leftover gameobject version
+DELETE FROM `gameobject` WHERE `id` = @ENTRY;
+DELETE FROM `gameobject_template` WHERE `entry` = @ENTRY;
+
+-- rebuild creature version
+DELETE FROM `creature` WHERE `id1` = @ENTRY;
 DELETE FROM `creature_template_model` WHERE `CreatureID` = @ENTRY;
 DELETE FROM `creature_template` WHERE `entry` = @ENTRY;
 
@@ -55,7 +62,7 @@ VALUES
     2000,
     1,
     0,
-    7,
+    9,
     0,
     0,
     0,
@@ -84,7 +91,7 @@ VALUES
 (
     @ENTRY,
     0,
-    19723,
+    @DISPLAYID,
     1,
     1,
     0
