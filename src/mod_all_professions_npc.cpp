@@ -111,7 +111,7 @@ namespace {
 
     void TeachProfession(Player* player, Creature* creature, uint32 skillLine, uint32 spellId, char const* professionName) {
         if(PlayerAlreadyKnowsProfession(player, skillLine)) {
-            ChatHandler(player->GetSession()).PSendSysMessage("You already know %s", professionName);
+            ChatHandler(player->GetSession()).SendSysMessage("You already know " + std::string(professionName) + ".");
             CloseGossipMenuFor(player);
             return;
         }
@@ -123,10 +123,10 @@ namespace {
         player->learnSpell(spellId, false);
 
         if(!player->HasSkill(skillLine)) {
-            ChatHandler(player->GetSession()).PSendSysMessage("Tried to teach %s, but the skill line was not added. Verify the spell ID for your core/database", professionName);
+            ChatHandler(player->GetSession()).PSendSysMessage("Tried to teach "  + std::string(professionName) + ", but the skill line was not added. Verify the spell ID for your core/database");
         }
         else {
-            ChatHandler(player->GetSession()).PSendSysMessage("You have learned %s.", professionName);
+           ChatHandler(player->GetSession()).SendSysMessage("You have learned " + std::string(professionName) + ".");
         }
 
         CloseGossipMenuFor(player);
