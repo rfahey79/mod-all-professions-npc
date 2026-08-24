@@ -109,7 +109,7 @@ namespace {
         return player->GetFreePrimaryProfessionPoints() > 0;
     }
 
-    void TeachProfession(Player* player, Creature* creature, uint32 skillLine, uint32 spellId, char const* professionName) {
+    void TeachProfession(Player* player, uint32 skillLine, uint32 spellId, char const* professionName) {
         if(PlayerAlreadyKnowsProfession(player, skillLine)) {
             ChatHandler(player->GetSession()).SendSysMessage("You already know " + std::string(professionName) + ".");
             CloseGossipMenuFor(player);
@@ -118,6 +118,8 @@ namespace {
 
         if(IsPrimaryProfession(skillLine) && !CanLearnPrimaryProfession(player))  {
             ChatHandler(player->GetSession()).SendSysMessage("You already know %s primary professions.", sConfigMgr->GetOption<uint32>("MaxPrimaryTradeSkill", 2)); // find the max primary profession count
+            CloseGossipMenuFor(player);
+            return;
         }
 
         player->learnSpell(spellId, false);
@@ -158,7 +160,7 @@ namespace {
                 return true;
             }
 
-            bool OnGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action) override {
+            bool OnGossipSelect(Player* player, Creature* /*creature*/, uint32 sender, uint32 action) override {
                 ClearGossipMenuFor(player);
 
                 if(sender != SENDER_MAIN)
@@ -166,46 +168,46 @@ namespace {
 
                 switch(action) {
                     case ACTION_ALCHEMY:
-                        TeachProfession(player, creature, SKILL_ALCHEMY, SPELL_ALCHEMY, "Alchemy");
+                        TeachProfession(player, SKILL_ALCHEMY, SPELL_ALCHEMY, "Alchemy");
                         break;
                     case ACTION_BLACKSMITHING:
-                        TeachProfession(player, creature, SKILL_BLACKSMITHING, SPELL_BLACKSMITHING, "Blacksmithing");
+                        TeachProfession(player, SKILL_BLACKSMITHING, SPELL_BLACKSMITHING, "Blacksmithing");
                         break;
                     case ACTION_ENCHANTING:
-                        TeachProfession(player, creature, SKILL_ENCHANTING, SPELL_ENCHANTING, "Enchanting");
+                        TeachProfession(player, SKILL_ENCHANTING, SPELL_ENCHANTING, "Enchanting");
                         break;
                     case ACTION_ENGINEERING:
-                        TeachProfession(player, creature, SKILL_ENGINEERING, SPELL_ENGINEERING, "Engineering");
+                        TeachProfession(player, SKILL_ENGINEERING, SPELL_ENGINEERING, "Engineering");
                         break;
                     case ACTION_HERBALISM:
-                        TeachProfession(player, creature, SKILL_HERBALISM, SPELL_HERBALISM, "Herbalism");
+                        TeachProfession(player, SKILL_HERBALISM, SPELL_HERBALISM, "Herbalism");
                         break;
                     case ACTION_INSCRIPTION:
-                        TeachProfession(player, creature, SKILL_INSCRIPTION, SPELL_INSCRIPTION, "Inscription");
+                        TeachProfession(player, SKILL_INSCRIPTION, SPELL_INSCRIPTION, "Inscription");
                         break;
                     case ACTION_JEWELCRAFTING:
-                        TeachProfession(player, creature, SKILL_JEWELCRAFTING, SPELL_JEWELCRAFTING, "Jewelcrafting");
+                        TeachProfession(player, SKILL_JEWELCRAFTING, SPELL_JEWELCRAFTING, "Jewelcrafting");
                         break;
                     case ACTION_LEATHERWORKING:
-                        TeachProfession(player, creature, SKILL_LEATHERWORKING, SPELL_LEATHERWORKING, "Leatherworking");
+                        TeachProfession(player, SKILL_LEATHERWORKING, SPELL_LEATHERWORKING, "Leatherworking");
                         break;
                     case ACTION_MINING:
-                        TeachProfession(player, creature, SKILL_MINING, SPELL_MINING, "Mining");
+                        TeachProfession(player, SKILL_MINING, SPELL_MINING, "Mining");
                         break;
                     case ACTION_SKINNING:
-                        TeachProfession(player, creature, SKILL_SKINNING, SPELL_SKINNING, "Skinning");
+                        TeachProfession(player, SKILL_SKINNING, SPELL_SKINNING, "Skinning");
                         break;
                     case ACTION_TAILORING:
-                        TeachProfession(player, creature, SKILL_TAILORING, SPELL_TAILORING, "Tailoring");
+                        TeachProfession(player, SKILL_TAILORING, SPELL_TAILORING, "Tailoring");
                         break;
                     case ACTION_COOKING:
-                        TeachProfession(player, creature, SKILL_COOKING, SPELL_COOKING, "Cooking");
+                        TeachProfession(player, SKILL_COOKING, SPELL_COOKING, "Cooking");
                         break;
                     case ACTION_FIRST_AID:
-                        TeachProfession(player, creature, SKILL_FIRST_AID, SPELL_FIRST_AID, "First Aid");
+                        TeachProfession(player, SKILL_FIRST_AID, SPELL_FIRST_AID, "First Aid");
                         break;
                     case ACTION_FISHING:
-                        TeachProfession(player, creature, SKILL_FISHING, SPELL_FISHING, "Fishing");
+                        TeachProfession(player, SKILL_FISHING, SPELL_FISHING, "Fishing");
                         break;
                     default:
                         CloseGossipMenuFor(player);
